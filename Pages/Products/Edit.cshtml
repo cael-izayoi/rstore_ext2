@@ -1,0 +1,28 @@
+﻿@page "{id:int}"
+@model Rstore_ext.Pages.Products.EditModel
+@{
+    ViewData["Title"] = "Редактировать товар";
+}
+
+<h2>Редактировать товар</h2>
+
+@if (Model.Product == null)
+{
+    <div class="alert alert-danger">Товар не найден.</div>
+}
+else
+{
+    <form method="post">
+        <input type="hidden" asp-for="Product.Id" />
+        <div class="form-group">
+            <label>Название</label>
+            <input asp-for="Product.Name" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label>Цена</label>
+            <input asp-for="Product.Price" class="form-control" />
+        </div>
+        <button type="submit" class="btn btn-primary mt-2">Сохранить</button>
+        <a asp-page="Index" class="btn btn-secondary mt-2">Отмена</a>
+    </form>
+}
