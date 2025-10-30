@@ -11,7 +11,8 @@ namespace Rstore_ext.Pages.Products
 
         public void OnGet()
         {
-            Products = ProductStore.GetAll();
+            Products = ProductStore.Products;
+
         }
     }
 }
