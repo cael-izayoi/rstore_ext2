@@ -1,4 +1,4 @@
-﻿@page
+@page
 @model Rstore_ext.Pages.Products.IndexModel
 @{
     ViewData["Title"] = "Список товаров";
@@ -6,29 +6,38 @@
 
 <h2>Список товаров</h2>
 
-<a asp-page="Create" class="btn btn-primary mb-3">Добавить товар</a>
+@if (TempData["Error"] != null)
+{
+    <div class="alert alert-danger">@TempData["Error"]</div>
+}
 
-<table class="table table-striped">
+<p><a asp-page="Create" class="btn btn-primary">Добавить товар</a></p>
+
+<table class="table table-bordered">
     <thead>
         <tr>
             <th>ID</th>
             <th>Название</th>
             <th>Цена</th>
-            <th></th>
+            <th>Категория</th>
+            <th>Количество</th>
+            <th>Действия</th>
         </tr>
     </thead>
     <tbody>
-        @foreach (var item in Model.Products)
-        {
-            <tr>
-                <td>@item.Id</td>
-                <td>@item.Name</td>
-                <td>@item.Price</td>
-                <td>
-                    <a asp-page="Edit" asp-route-id="@item.Id" class="btn btn-warning btn-sm">Редактировать</a>
-                    <a asp-page="Delete" asp-route-id="@item.Id" class="btn btn-danger btn-sm">Удалить</a>
-                </td>
-            </tr>
-        }
+    @foreach (var item in Model.Products)
+    {
+        <tr>
+            <td>@item.Id</td>
+            <td>@item.Name</td>
+            <td>@item.Price</td>
+            <td>@item.Category</td>
+            <td>@item.Stock</td>
+            <td>
+                <a asp-page="Edit" asp-route-id="@item.Id" class="btn btn-warning btn-sm">Редактировать</a>
+                <a asp-page="Delete" asp-route-id="@item.Id" class="btn btn-danger btn-sm">Удалить</a>
+            </td>
+        </tr>
+    }
     </tbody>
 </table>
